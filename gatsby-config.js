@@ -12,5 +12,9 @@ module.exports = {
       resolve: `gatsby-plugin-emotion`,
       options: {},
     },
+    {
+      resolve: `gatsby-plugin-postcss`,
+      options: {},
+    },
   ],
 }
