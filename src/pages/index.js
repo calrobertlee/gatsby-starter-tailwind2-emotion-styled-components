@@ -28,7 +28,7 @@ const CardHeader = styled.h1`
 const CardCopy = styled.div`
   p {
     ${tw`
-      text-sm mb-2 sm:text-md mb-2 text-gray-900 leading-relaxed
+      text-sm mb-2 sm:text-md mb-3 text-gray-900 leading-relaxed
     `}
 
     &:last-of-type {
