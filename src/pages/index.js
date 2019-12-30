@@ -4,7 +4,7 @@ import Img from 'gatsby-image'
 import Layout from '../components/layout'
 import styled from '@emotion/styled'
 import tw from 'tailwind.macro'
-import * from 'gatsby-plugin-react-helmet'
+import { Helmet } from 'react-helmet'
 
 // ========================
 // The primary card container
@@ -74,6 +74,10 @@ const CardIcons = styled.ul`
 
 export default ({ data }) => (
   <Layout>
+    <Helmet>
+      <meta charSet="utf-8" />
+      <title>{data.site.siteMetadata.title}</title>
+    </Helmet>
     <Card>
       <CardHeader>Gatsby Tailwind 2 + Emotion / Styled Components</CardHeader>
       <CardCopy>
@@ -84,8 +88,10 @@ export default ({ data }) => (
           etc).
         </p>
         <p>
-          Developed by Chrish Dunne (
-          <a href="https://twitter.com/__ccld">@__ccld</a>)
+          <strong>
+            Developed by Chrish Dunne (
+            <a href="https://twitter.com/__ccld">@__ccld</a>)
+          </strong>
         </p>
       </CardCopy>
       <Divider />
@@ -102,6 +108,11 @@ export default ({ data }) => (
 
 export const query = graphql`
   query {
+    site {
+      siteMetadata {
+        title
+      }
+    }
     allImageSharp {
       edges {
         node {
