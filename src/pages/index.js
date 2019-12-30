@@ -5,24 +5,38 @@ import tw from 'tailwind.macro'
 
 const Card = styled.div`
   ${tw`
-    bg-white rounded-lg shadow-xl p-8 w-full md:w-1/2 lg:w-1/3 h-auto
+    bg-white rounded-lg shadow-xl p-8 w-full md:w-1/2 lg:w-1/3 h-auto m-4
   `}
 `
 const CardHeader = styled.h1`
-  ${tw`text-md`}
+  ${tw`text-2xl mb-2 font-bold`}
 `
-const CardParagraph = styled.p``
+const CardCopy = styled.div`
+  p {
+    ${tw`
+      text-sm mb-2 sm:text-md mb-2
+    `}
+    &:last-of-type {
+      ${tw`
+        mb-0
+      `}
+    }
+  }
+`
 const CardIcons = styled.div``
 
 export default () => (
   <Layout>
     <Card>
-      <CardHeader>Welcome</CardHeader>
-      <CardParagraph>
-        In either case, only the CSS that is actu­al­ly used on a page will be
-        extract­ed (no need for PurgeC­SS), and the styles used by com­po­nents
-        on a page will be inlined, appear­ing some­thing like this.
-      </CardParagraph>
+      <CardHeader>Gatsby Tailwind 2 + Emotion / Styled Components</CardHeader>
+      <CardCopy>
+        <p>
+          A (reasonably) unopinionated Gatsby starter, including; Tailwind 2 and
+          Emotion. Use Tailwind utilities with Emotion powered CSS-in-JS to
+          produce component scoped CSS (no need for utilities like Purge CSS,
+          etc).
+        </p>
+      </CardCopy>
     </Card>
   </Layout>
 )

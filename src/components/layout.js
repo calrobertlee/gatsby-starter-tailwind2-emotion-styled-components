@@ -4,7 +4,7 @@ import tw from 'tailwind.macro'
 
 const PageContainer = styled.div`
   ${tw`
-    flex items-center justify-center h-screen w-full
+    flex items-center justify-center h-screen w-full bg-gray-100
   `}
 `
 
