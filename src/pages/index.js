@@ -1,31 +1,78 @@
 import React from 'react'
+import { graphql } from 'gatsby'
+import Img from 'gatsby-image'
 import Layout from '../components/layout'
 import styled from '@emotion/styled'
 import tw from 'tailwind.macro'
+import * from 'gatsby-plugin-react-helmet'
 
+// ========================
+// The primary card container
 const Card = styled.div`
   ${tw`
-    bg-white rounded-lg shadow-xl p-8 w-full md:w-1/2 lg:w-1/3 h-auto m-4
+    bg-white rounded-lg shadow-xl p-12 w-full h-auto m-4
   `}
+  max-width: 500px;
 `
+// ========================
+
+// ========================
+// The card header
 const CardHeader = styled.h1`
-  ${tw`text-2xl mb-2 font-bold`}
+  ${tw`text-2xl mb-4 font-bold leading-tight text-teal-800`}
 `
+// ========================
+
+// ========================
+// Primary copy (inc. links, etc)
 const CardCopy = styled.div`
   p {
     ${tw`
-      text-sm mb-2 sm:text-md mb-2
+      text-sm mb-2 sm:text-md mb-2 text-gray-900 leading-relaxed
     `}
+
     &:last-of-type {
       ${tw`
         mb-0
       `}
     }
+
+    & a {
+      ${tw`text-teal-500`}
+
+      &:hover {
+        ${tw`underline text-teal-600`}
+      }
+    }
   }
 `
-const CardIcons = styled.div``
+// ========================
 
-export default () => (
+// ========================
+// A reusable divider for separating content
+const Divider = styled.div`
+  ${tw`w-full h-1 bg-gray-100 my-6`}
+`
+
+// ========================
+// Icons for credits
+const CardIcons = styled.ul`
+  ${tw`
+    flex flex-row
+  `}
+
+  & li {
+    ${tw`flex items-center mx-6`}
+
+    &:first-of-type,
+    &:last-of-type {
+      ${tw`mx-0`}
+    }
+  }
+`
+// ========================
+
+export default ({ data }) => (
   <Layout>
     <Card>
       <CardHeader>Gatsby Tailwind 2 + Emotion / Styled Components</CardHeader>
@@ -36,7 +83,33 @@ export default () => (
           produce component scoped CSS (no need for utilities like Purge CSS,
           etc).
         </p>
+        <p>
+          Developed by Chrish Dunne (
+          <a href="https://twitter.com/__ccld">@__ccld</a>)
+        </p>
       </CardCopy>
+      <Divider />
+      <CardIcons>
+        {data.allImageSharp.edges.map(({ node }, index) => (
+          <li key={index}>
+            <Img fixed={node.fixed} alt="" />
+          </li>
+        ))}
+      </CardIcons>
     </Card>
   </Layout>
 )
+
+export const query = graphql`
+  query {
+    allImageSharp {
+      edges {
+        node {
+          fixed(width: 60) {
+            ...GatsbyImageSharpFixed
+          }
+        }
+      }
+    }
+  }
+`
